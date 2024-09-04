@@ -5,3 +5,14 @@ The goal is to read a variety of file types, get the supplier items from them, c
 
 ## Designs
 Design diagrams have been created used [umlet](https://www.umlet.com/). They are within the designs/ directory.
+
+## Tests
+Tests have been written with unittest. They can be run with the command:
+
+`python -m unittest`
+
+Or to point at a specific directory to discover tests in:
+
+`python -m unittest discover -s Sources/tests`
+
+Where `Sources/tests` is the directory you would like to discover tests in.
