@@ -21,7 +21,17 @@ class Item:
         cost: Decimal,
         **attributes,
     ) -> None:
-        """Initialise an Item instance with the given properties."""
+        """Initialise an Item instance with the given properties.
+
+        Keyword arguments:
+
+        @model -- the model number of the Item.
+        @stock_status -- the availability of the Item.
+        @stock_level -- a number representing the quantity available.
+        @rrp -- Recommended Retail Price.
+        @cost -- how much the Item costs.
+        @attributes -- a dictionary of attribute labels & values.
+        """
         self.model = model
         self.stock_status = stock_status
         self.stock_level = stock_level
@@ -32,7 +42,20 @@ class Item:
 
     def __eq__(self, other) -> bool:
         """Equality operator overload for comparing the equality of
-        two Item instances."""
+        two Item instances.
+
+        #### Keyword arguments:
+
+        @other -- the other instance to compare this Item to.
+
+        #### Returns:
+
+        A bool signifying equality of the compared Items.
+
+        #### Raises:
+
+        NotImplementedError -- if other is not an instance of Item.
+        """
         if not isinstance(other, Item):
             raise NotImplementedError
         for attr in vars(self):

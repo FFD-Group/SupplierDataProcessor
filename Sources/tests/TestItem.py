@@ -5,8 +5,13 @@ from faker import Faker
 
 def _generateTestItem(**overrides: dict) -> Item.Item:
     """Generate a test Item optionally with the given overrides.
-    @param overrides: dict - an optional dictionary of values to use in the Item properties.
-    @return an Item instance"""
+
+    Keyword arguments:
+
+    overrides -- an optional dictionary of values to use in the Item properties.
+
+    Returns: an Item instance with the given or random properties.
+    """
     fake = Faker()
     stock_status_values = ["In Stock", "Out of Stock"]
     attribute_dict = dict()
@@ -36,9 +41,11 @@ class testItem(unittest.TestCase):
 
     @classmethod
     def setUpClass(self) -> None:
+        """Create the Faker instance for use in tests."""
         self.faker = Faker()
 
     def setUp(self) -> None:
+        """Create some test items before each test."""
         self.testItem1 = _generateTestItem(
             overrides={
                 "attributes": {
@@ -52,6 +59,7 @@ class testItem(unittest.TestCase):
         self.testItem2 = _generateTestItem(overrides={"model": "testItem2"})
 
     def test_eq(self) -> None:
+        """Test the equality operator on Item instances."""
         self.assertFalse(self.testItem1 == self.testItem2)
         self.assertTrue(self.testItem1 == self.testItemOne)
         with self.assertRaises(NotImplementedError):
