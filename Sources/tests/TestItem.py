@@ -3,7 +3,7 @@ from Sources import Item
 from faker import Faker
 
 
-def _generateTestItem(**overrides: dict) -> Item.Item:
+def _generateTestItem(overrides: dict) -> Item.Item:
     """Generate a test Item optionally with the given overrides.
 
     Keyword arguments:

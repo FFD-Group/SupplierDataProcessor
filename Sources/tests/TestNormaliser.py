@@ -1,6 +1,6 @@
+from pprint import pprint
 import unittest
 from Sources.Normaliser import Normaliser
-from Sources.Item import Item
 from Sources.tests.testItem import _generateTestItem
 
 
@@ -13,13 +13,28 @@ class testNormaliser(unittest.TestCase):
         represented as Items"""
         normaliser = Normaliser()
         input_test_data_1 = [
-            "sku,price,availability,qty,cost,tangerine,banana,kiwi\n",
-            "testModel,100.00,in stock,435,75,orange,yellow,brown",
+            '{"sku":"testModel","price":100.00,"availability":"In Stock"'
+            + ',"qty":435,"cost":75.00,"tangerine":"orange",'
+            + '"banana":"yellow","kiwi":"brown"}',
         ]
-        correct_output_item_1 = _generateTestItem(overrides=None)
+        correct_output_item_1 = _generateTestItem(
+            overrides={
+                "model": "testModel",
+                "stock_status": "In Stock",
+                "stock_level": 435,
+                "rrp": 100.00,
+                "cost": 75.00,
+                "attributes": {
+                    "tangerine": "orange",
+                    "banana": "yellow",
+                    "kiwi": "brown",
+                },
+            }
+        )
 
         output_data_1 = normaliser.normalise(input_test_data_1)
-        self.assertEqual(output_data_1, correct_output_item_1)
+        print(output_data_1[0], correct_output_item_1)
+        self.assertEqual(output_data_1[0], correct_output_item_1)
 
 
 if __name__ == "__main__":

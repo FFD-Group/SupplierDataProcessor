@@ -12,6 +12,10 @@ class Item:
     cost: Decimal
     attributes: List[tuple]
 
+    @property
+    def model_attrs(self) -> List[str]:
+        return ["model", "stock_status", "stock_level", "rrp", "cost"]
+
     def __init__(
         self,
         model: str,
@@ -32,11 +36,14 @@ class Item:
         @cost -- how much the Item costs.
         @attributes -- a dictionary of attribute labels & values.
         """
-        self.model = model
-        self.stock_status = stock_status
-        self.stock_level = stock_level
-        self.rrp = rrp
-        self.cost = cost
+        try:
+            self.model = str(model)
+            self.stock_status = str(stock_status)
+            self.stock_level = int(stock_level)
+            self.rrp = Decimal(rrp)
+            self.cost = Decimal(cost)
+        except ValueError as ve:
+            print(ve)
         self.attributes = []
         self.attributes.append((label, value) for (label, value) in attributes)
 
@@ -58,10 +65,28 @@ class Item:
         """
         if not isinstance(other, Item):
             raise NotImplementedError
-        for attr in vars(self):
+        for attr in self.model_attrs:
             if not getattr(other, attr):
                 print(f"{attr} on this Item is not the same as other Item")
                 return False
+            other_value = getattr(other, attr)
+            self_value = getattr(self, attr)
             if getattr(other, attr) != getattr(self, attr):
+                print(
+                    f"{self_value} on this Item is not the same as other Item: {other_value}"
+                )
+                print(type(self_value), "-", type(other_value))
                 return False
         return True
+
+    def __repr__(self) -> str:
+        """Representation of Item."""
+        return f"{self.model} - {self.stock_status} ({self.stock_level} available) - £{self.rrp} RRP, £{self.cost} cost"
+
+    def __str__(self) -> str:
+        """String representation of Item."""
+        return (
+            f"Item model: {self.model}"
+            + f" with a list price of {self.rrp}, a cost of {self.cost}, "
+            + f"is {self.stock_status} with {self.stock_level} available."
+        )
