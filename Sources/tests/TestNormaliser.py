@@ -33,7 +33,6 @@ class testNormaliser(unittest.TestCase):
         )
 
         output_data_1 = normaliser.normalise(input_test_data_1)
-        print(output_data_1[0], correct_output_item_1)
         self.assertEqual(output_data_1[0], correct_output_item_1)
 
 
