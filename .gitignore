@@ -165,3 +165,7 @@ cython_debug/
 
 # vscode
 .vscode/
+
+# files
+files/
+!files/test_*
