@@ -58,7 +58,7 @@ class testItem(unittest.TestCase):
         self.testItemOne = self.testItem1
         self.testItem2 = _generateTestItem(overrides={"model": "testItem2"})
 
-    def test_eq(self) -> None:
+    def test__eq__(self) -> None:
         """Test the equality operator on Item instances."""
         self.assertFalse(self.testItem1 == self.testItem2)
         self.assertTrue(self.testItem1 == self.testItemOne)

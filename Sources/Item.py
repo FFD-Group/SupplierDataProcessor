@@ -67,15 +67,10 @@ class Item:
             raise NotImplementedError
         for attr in self.model_attrs:
             if not getattr(other, attr):
-                print(f"{attr} on this Item is not the same as other Item")
                 return False
             other_value = getattr(other, attr)
             self_value = getattr(self, attr)
             if getattr(other, attr) != getattr(self, attr):
-                print(
-                    f"{self_value} on this Item is not the same as other Item: {other_value}"
-                )
-                print(type(self_value), "-", type(other_value))
                 return False
         return True
 

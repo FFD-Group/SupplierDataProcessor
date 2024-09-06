@@ -1,19 +1,12 @@
-from Sources import FileType
+from Sources.FileType import FileType
+
+SPREADSHEET_FILE_TYPE = "{} Spreadsheet"
 
 
 class Spreadsheet(FileType):
     """Represents a spreadsheet file on the OS being
     used as a source for supplier item data."""
 
-    filename: str
-    filepath: str
-
-    def getFilePath(self) -> str:
-        """Return the filepath."""
-
-        raise NotImplementedError
-
     def getFileType(self) -> str:
         """Return the file type."""
-
-        raise NotImplementedError
+        return SPREADSHEET_FILE_TYPE.format(self.file_type)

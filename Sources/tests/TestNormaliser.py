@@ -7,7 +7,7 @@ from Sources.tests.testItem import _generateTestItem
 class testNormaliser(unittest.TestCase):
     """Testing the Item model."""
 
-    def test_normalise(self) -> None:
+    def testNormalise(self) -> None:
         """Ensure the normaliser can handle different types of
         input and output a uniform result which can be
         represented as Items"""
