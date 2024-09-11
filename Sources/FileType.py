@@ -1,18 +1,56 @@
 from pathlib import Path
 from abc import ABC, abstractmethod
 from typing import List
-from Sources.FileReader import FileReader
 from Sources.SourceProtocol import SourceProtocol
+
+EXTENSION_READER_CLASS_MAP = {
+    "XML": "Sources.XMLFile.XMLReader",
+    "CSV": "Sources.Spreadsheet.SpreadsheetReader",
+}
+
+
+class FileReader:
+    """The FileReader class will read a source file and
+    obtain the str representations of its items."""
+
+    @property
+    @abstractmethod
+    def file(self) -> "FileType":
+        pass
+
+    @file.setter
+    def file(self, file: "FileType") -> None:
+        self._file = file
+
+    @property
+    @abstractmethod
+    def read_file_items(self) -> List[str]:
+        pass
+
+    @read_file_items.setter
+    def read_file_items(self, items: List[str]) -> None:
+        self._read_file_items = items
+
+    @abstractmethod
+    def readFile(self, file: "FileType") -> List[str]:
+        """Read the item representations from the file."""
+        pass
 
 
 class FileType(ABC, SourceProtocol):
     """Base class for different types of source files."""
 
-    reader: FileReader
-    file_path: str
-    file_type: str
+    @property
+    @abstractmethod
+    def reader(self):
+        pass
 
-    def __init__(self, file_path: str) -> None:
+    @property
+    @abstractmethod
+    def file_path(self):
+        pass
+
+    def __init__(self, file_path: str, reader: FileReader) -> None:
         """Instantiate a FileType object.
 
         Keyword arguments:
@@ -25,6 +63,7 @@ class FileType(ABC, SourceProtocol):
             raise FileNotFoundError
         self.file_path = file_path
         self.file_type = file_object.suffix.replace(".", "", 1).upper()
+        self.reader = reader
 
     def getFilePath(self) -> str:
         """Return the file path."""
@@ -34,7 +73,8 @@ class FileType(ABC, SourceProtocol):
     def getFileType(self) -> str:
         """Return the type of file."""
 
+    @abstractmethod
     def readFile(self) -> List[str]:
         """Read the data from the file and get a list
         of representing item strings."""
-        return self.reader.readFile(self)
+        pass

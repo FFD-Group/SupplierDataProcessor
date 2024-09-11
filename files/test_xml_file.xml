@@ -30,6 +30,6 @@
         <productName>
             <![CDATA[ XML test model name 3 lots of stock ]]>
         </productName>
-        <stockLevel>999999.4</stockLevel>
+        <stockLevel>999999</stockLevel>
     </product>
 </feed>

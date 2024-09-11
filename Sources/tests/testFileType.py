@@ -16,20 +16,24 @@ class TestFileType(unittest.TestCase):
 
     def setUp(self) -> None:
         """Create some test files."""
-        self.test_xml_file = XMLFile.XMLFile(TEST_XML_FILE_PATH)
+        self.test_xml_file = XMLFile.XMLFile(
+            TEST_XML_FILE_PATH, XMLFile.XMLReader
+        )
         self.test_spreadsheet_xlsx = Spreadsheet.Spreadsheet(
-            TEST_SPREADSHEET_XLSX_PATH
+            TEST_SPREADSHEET_XLSX_PATH, Spreadsheet.SpreadsheetReader
         )
         self.test_spreadsheet_csv = Spreadsheet.Spreadsheet(
-            TEST_SPREADSHEET_CSV_PATH
+            TEST_SPREADSHEET_CSV_PATH, Spreadsheet.SpreadsheetReader
         )
 
     def testCreateFileType(self) -> None:
         """Test the creation of FileTypes."""
         with self.assertRaises(FileNotFoundError):
-            _ = XMLFile.XMLFile("path/does/not/exist.xml")
+            _ = XMLFile.XMLFile("path/does/not/exist.xml", XMLFile.XMLReader)
         with self.assertRaises(FileNotFoundError):
-            _ = Spreadsheet.Spreadsheet("path/does/not/exist.csv")
+            _ = Spreadsheet.Spreadsheet(
+                "path/does/not/exist.csv", Spreadsheet.SpreadsheetReader
+            )
 
     def testGetFilePath(self) -> None:
         """Test the FileType's file path is returned correctly."""
