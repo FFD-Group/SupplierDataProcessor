@@ -32,7 +32,9 @@ class FileReader:
         self._read_file_items = items
 
     @abstractmethod
-    def readFile(self, file: "FileType") -> List[str]:
+    def readFile(
+        self, file: "FileType", skiprows: List | int | callable = None
+    ) -> List[str]:
         """Read the item representations from the file."""
         pass
 

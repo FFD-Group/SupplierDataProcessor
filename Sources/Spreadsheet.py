@@ -1,3 +1,5 @@
+import json
+import pandas as pd
 from typing import List
 from Sources.FileType import FileType, FileReader
 
@@ -6,14 +8,27 @@ SPREADSHEET_FILE_TYPE = "{} Spreadsheet"
 
 class SpreadsheetReader(FileReader):
 
-    def readFile(self, file: FileType) -> List[str]:
+    def readFile(
+        self, file: FileType, skiprows: List | int | callable = None
+    ) -> List[str] | None:
         read_items = []
-        # use pandas to read the file depending on extension...
         filetype = file.getFileType()
-        # CASES:
-        #   "XLS Spreadsheet"
-        #   "CSV Spreadsheet"
-        #   raise ValueError
+        try:
+            match filetype:
+                case "XLSX Spreadsheet":
+                    df = pd.read_excel(file.getFilePath(), skiprows=skiprows)
+                case "CSV Spreadsheet":
+                    df = pd.read_csv(file.getFilePath(), skiprows=skiprows)
+                case _:
+                    raise ValueError
+        except ValueError as ve:
+            # log unsupported filetype
+            return None
+
+        for _, row in df.iterrows():
+            read_items.append(row.to_json(force_ascii=False))
+
+        return read_items
 
 
 class Spreadsheet(FileType):
@@ -40,5 +55,11 @@ class Spreadsheet(FileType):
         """Return the file type."""
         return SPREADSHEET_FILE_TYPE.format(self.file_type)
 
-    def readFile(self) -> List[str]:
-        return self.reader.readFile(self)
+    def readFile(self, skiprows: List | int | callable = None) -> List[str]:
+        return self.reader.readFile(file=self, skiprows=skiprows)
+
+
+if __name__ == "__main__":
+    r = SpreadsheetReader()
+    sp = Spreadsheet("files/test_spreadsheet.xlsx", r)
+    print(sp.readFile(skiprows=3))
