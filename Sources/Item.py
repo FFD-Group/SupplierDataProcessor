@@ -42,8 +42,8 @@ class Item:
             self.stock_level = int(stock_level)
             self.rrp = Decimal(rrp)
             self.cost = Decimal(cost)
-        except ValueError as ve:
-            print(ve)
+        except ValueError as value_exception:
+            raise value_exception
         self.attributes = []
         self.attributes.append((label, value) for (label, value) in attributes)
 

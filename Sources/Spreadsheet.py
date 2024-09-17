@@ -1,7 +1,9 @@
-import json
+import logging
 import pandas as pd
 from typing import List
 from Sources.FileType import FileType, FileReader
+
+logger = logging.getLogger(__name__)
 
 SPREADSHEET_FILE_TYPE = "{} Spreadsheet"
 
@@ -21,8 +23,8 @@ class SpreadsheetReader(FileReader):
                     df = pd.read_csv(file.getFilePath(), skiprows=skiprows)
                 case _:
                     raise ValueError
-        except ValueError as ve:
-            # log unsupported filetype
+        except ValueError as value_error_exception:
+            logger.exception(value_error_exception)
             return None
 
         for _, row in df.iterrows():
@@ -57,9 +59,3 @@ class Spreadsheet(FileType):
 
     def readFile(self, skiprows: List | int | callable = None) -> List[str]:
         return self.reader.readFile(file=self, skiprows=skiprows)
-
-
-if __name__ == "__main__":
-    r = SpreadsheetReader()
-    sp = Spreadsheet("files/test_spreadsheet.xlsx", r)
-    print(sp.readFile(skiprows=3))

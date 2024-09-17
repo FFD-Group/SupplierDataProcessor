@@ -1,6 +1,6 @@
+import json
 from dataclasses import dataclass
 from decimal import Decimal
-import json
 from typing import List
 from Sources.Item import Item
 from dataclass_wizard import json_field, JSONSerializable
@@ -49,6 +49,6 @@ class Normaliser:
             try:
                 data_item = DataItem.from_dict(json.loads(source_item))
                 normalised_items.append(data_item.convertToItem())
-            except UnknownJSONKey as unknown_key:
-                print(unknown_key)
+            except UnknownJSONKey as unknown_key_exception:
+                raise unknown_key_exception
         return normalised_items
