@@ -18,11 +18,11 @@ class Item:
 
     def __init__(
         self,
-        model: str,
-        stock_status: str,
-        stock_level: int,
-        rrp: Decimal,
-        cost: Decimal,
+        model: str = None,
+        stock_status: str = None,
+        stock_level: int = 0,
+        rrp: Decimal = 0.00,
+        cost: Decimal = 0.00,
         **attributes,
     ) -> None:
         """Initialise an Item instance with the given properties.
@@ -37,11 +37,11 @@ class Item:
         @attributes -- a dictionary of attribute labels & values.
         """
         try:
-            self.model = str(model)
-            self.stock_status = str(stock_status)
-            self.stock_level = int(stock_level)
-            self.rrp = Decimal(rrp)
-            self.cost = Decimal(cost)
+            self.model = str(model) if model else None
+            self.stock_status = str(stock_status) if stock_status else None
+            self.stock_level = int(stock_level) if stock_level else int(0)
+            self.rrp = Decimal(rrp) if rrp else Decimal(0.00)
+            self.cost = Decimal(cost) if cost else Decimal(0.00)
         except ValueError as value_exception:
             raise value_exception
         self.attributes = []
@@ -66,7 +66,7 @@ class Item:
         if not isinstance(other, Item):
             raise NotImplementedError
         for attr in self.model_attrs:
-            if not getattr(other, attr):
+            if not hasattr(other, attr):
                 return False
             other_value = getattr(other, attr)
             self_value = getattr(self, attr)
@@ -76,12 +76,19 @@ class Item:
 
     def __repr__(self) -> str:
         """Representation of Item."""
-        return f"{self.model} - {self.stock_status} ({self.stock_level} available) - £{self.rrp} RRP, £{self.cost} cost"
+        return self.__str__()
 
     def __str__(self) -> str:
         """String representation of Item."""
+        model = self.model or "<None>"
+        rrp = self.rrp or 0.00
+        cost = self.cost or 0.00
+        stock_status = self.stock_status or "<Unknown>"
+        stock_level = (
+            self.stock_level if self.stock_level is not None else "<Unknown>"
+        )
         return (
-            f"Item model: {self.model}"
-            + f" with a list price of {self.rrp}, a cost of {self.cost}, "
-            + f"is {self.stock_status} with {self.stock_level} available."
+            f"Item model: {model}"
+            + f" with a list price of {rrp}, a cost of {cost}, "
+            + f"is {stock_status} with {stock_level} available."
         )

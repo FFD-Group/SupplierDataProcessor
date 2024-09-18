@@ -1,7 +1,7 @@
 import json
 from dataclasses import dataclass
 from decimal import Decimal
-from typing import List
+from typing import List, Optional
 from Sources.Item import Item
 from dataclass_wizard import json_field, JSONSerializable
 from dataclass_wizard.errors import UnknownJSONKey
@@ -15,11 +15,17 @@ class DataItem(JSONSerializable):
     # Need a way to get these mapping lists of strings from a user-definable
     # source so that the maintainer doesn't have to keep up with changes
     # in sources.
-    model: str = json_field(("sku", "product", "model_number"), all=True)
-    stock_status: str = json_field("availability", all=True)
-    stock_level: str = json_field(("qty", "quantity", "stock level"), all=True)
-    cost: Decimal = json_field("cost", all=True)
-    rrp: Decimal = json_field(("rrp", "price"), all=True)
+    model: Optional[str] = json_field(
+        ("sku", "product", "model_number", "productCode"), all=True, default=""
+    )
+    stock_status: Optional[str] = json_field(
+        "availability", all=True, default=""
+    )
+    stock_level: Optional[str] = json_field(
+        ("qty", "quantity", "stock level"), all=True, default=0
+    )
+    cost: Optional[Decimal] = json_field("cost", all=True, default=0.0)
+    rrp: Optional[Decimal] = json_field(("rrp", "price"), all=True, default=0.0)
     attributes: dict = None
 
     def convertToItem(self) -> Item:

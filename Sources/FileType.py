@@ -71,6 +71,15 @@ class FileType(ABC, SourceProtocol):
         """Return the file path."""
         return self.file_path
 
+    def getSourceType(self) -> str:
+        return self.getFileType()
+
+    def getSourcePath(self) -> str:
+        return self.getFilePath()
+
+    def readSource(self) -> List[str]:
+        return self.readFile()
+
     @abstractmethod
     def getFileType(self) -> str:
         """Return the type of file."""

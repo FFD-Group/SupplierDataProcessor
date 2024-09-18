@@ -6,12 +6,12 @@ class SourceProtocol(Protocol):
 
     def getSourcePath(self) -> str:
         """Get the path of a source if it has one."""
-        raise NotImplementedError
+        pass
 
     def getSourceType(self) -> str:
         """Return the type of the source."""
-        raise NotImplementedError
+        pass
 
     def readSource(self) -> List[str]:
         """Read and return the read items from the source."""
-        raise NotImplementedError
+        pass
