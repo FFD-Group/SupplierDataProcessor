@@ -8,7 +8,8 @@ EXPECTED_XML_PATH = "files/test_xml_file.xml"
 
 class testSource(unittest.TestCase):
 
-    def setUp(self) -> None:
+    @classmethod
+    def setUpClass(self) -> None:
         reader = XMLReader()
         source = XMLFile(EXPECTED_XML_PATH, reader)
         self.source = Source(source)

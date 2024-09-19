@@ -6,6 +6,19 @@ from Sources.Item import Item
 from dataclass_wizard import json_field, JSONSerializable
 from dataclass_wizard.errors import UnknownJSONKey
 
+MODEL_FIELD_NAMES = [
+    "sku",
+    "product",
+    "model_number",
+    "productCode",
+    "SKU",
+    "Item Code",
+]
+STOCK_STATUS_FIELD_NAMES = ["availability", "Availability", "Stock Avail."]
+STOCK_LEVEL_FIELD_NAMES = ["qty", "quantity", "stock level"]
+COST_FIELD_NAMES = ["cost"]
+RRP_FIELD_NAMES = ["rrp", "price", "List Price", "List Price GBP"]
+
 
 @dataclass
 class DataItem(JSONSerializable):
@@ -15,17 +28,17 @@ class DataItem(JSONSerializable):
     # Need a way to get these mapping lists of strings from a user-definable
     # source so that the maintainer doesn't have to keep up with changes
     # in sources.
-    model: Optional[str] = json_field(
-        ("sku", "product", "model_number", "productCode"), all=True, default=""
-    )
+    model: Optional[str] = json_field(MODEL_FIELD_NAMES, all=True, default="")
     stock_status: Optional[str] = json_field(
-        "availability", all=True, default=""
+        STOCK_STATUS_FIELD_NAMES, all=True, default=""
     )
     stock_level: Optional[str] = json_field(
-        ("qty", "quantity", "stock level"), all=True, default=0
+        STOCK_LEVEL_FIELD_NAMES, all=True, default=0
     )
-    cost: Optional[Decimal] = json_field("cost", all=True, default=0.0)
-    rrp: Optional[Decimal] = json_field(("rrp", "price"), all=True, default=0.0)
+    cost: Optional[Decimal] = json_field(
+        COST_FIELD_NAMES, all=True, default=0.0
+    )
+    rrp: Optional[Decimal] = json_field(RRP_FIELD_NAMES, all=True, default=0.0)
     attributes: dict = None
 
     def convertToItem(self) -> Item:
@@ -46,7 +59,7 @@ class DataItem(JSONSerializable):
 
 
 class Normaliser:
-    """The Normaliser class will normalise data read from a source in
+    """The Normaliser class will normalise json data read from a source in
     order to make sure it can be represented as a list of Items."""
 
     def normalise(self, data: List[str]) -> List[Item]:

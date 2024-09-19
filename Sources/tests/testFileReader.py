@@ -25,7 +25,8 @@ TEST_XLSX_CORRECT_OUTCOME = [
 
 class TestFileReader(unittest.TestCase):
 
-    def setUp(self) -> None:
+    @classmethod
+    def setUpClass(self) -> None:
         self.test_xml_file = XMLFile(
             "files/test_xml_file.xml", XMLReader("product")
         )
@@ -33,7 +34,7 @@ class TestFileReader(unittest.TestCase):
             "files/test_spreadsheet.csv", SpreadsheetReader()
         )
         self.test_xlsx_file = Spreadsheet(
-            "files/test_spreadsheet.xlsx", SpreadsheetReader()
+            "files/test_spreadsheet.xlsx", SpreadsheetReader(), 3
         )
 
     def testReadFile(self) -> None:
@@ -51,7 +52,7 @@ class TestFileReader(unittest.TestCase):
             for key in expected:
                 self.assertTrue(key in csv_item)
                 self.assertEqual(expected[key], csv_item[key])
-        xlsx_file_read_result = self.test_xlsx_file.readFile(3)
+        xlsx_file_read_result = self.test_xlsx_file.readFile()
         for index, xlsx_item_as_json in enumerate(xlsx_file_read_result):
             xlsx_item = json.loads(xlsx_item_as_json)
             expected = json.loads(TEST_XLSX_CORRECT_OUTCOME[index])

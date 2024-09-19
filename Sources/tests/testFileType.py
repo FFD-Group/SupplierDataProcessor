@@ -14,7 +14,8 @@ CSV_SPREADSHEET_FILE_TYPE = Spreadsheet.SPREADSHEET_FILE_TYPE.format("CSV")
 
 class TestFileType(unittest.TestCase):
 
-    def setUp(self) -> None:
+    @classmethod
+    def setUpClass(self) -> None:
         """Create some test files."""
         self.test_xml_file = XMLFile.XMLFile(
             TEST_XML_FILE_PATH, XMLFile.XMLReader

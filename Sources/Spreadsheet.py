@@ -37,6 +37,17 @@ class Spreadsheet(FileType):
     """Represents a spreadsheet file on the OS being
     used as a source for supplier item data."""
 
+    skiprows: List | int | callable
+
+    def __init__(
+        self,
+        file_path: str,
+        reader: FileReader,
+        skiprows: List | int | callable = None,
+    ) -> None:
+        super().__init__(file_path, reader)
+        self.skiprows = skiprows
+
     @property
     def reader(self) -> SpreadsheetReader:
         return self._reader
@@ -57,5 +68,5 @@ class Spreadsheet(FileType):
         """Return the file type."""
         return SPREADSHEET_FILE_TYPE.format(self.file_type)
 
-    def readFile(self, skiprows: List | int | callable = None) -> List[str]:
-        return self.reader.readFile(file=self, skiprows=skiprows)
+    def readFile(self) -> List[str]:
+        return self.reader.readFile(file=self, skiprows=self.skiprows)

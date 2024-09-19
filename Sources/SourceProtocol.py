@@ -1,6 +1,7 @@
-from typing import List, Protocol
+from typing import List, Protocol, runtime_checkable
 
 
+@runtime_checkable
 class SourceProtocol(Protocol):
     """Provides a way to read items from an identifiable source."""
 

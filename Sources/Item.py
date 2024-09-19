@@ -1,6 +1,9 @@
 from decimal import Decimal
 from typing import List
 
+MIN_STOCK_THRESHOLD = 0
+AVAILABILITY_VALUE_SYMONYMS = ["Yes", "In Stock", "Low Stock"]
+
 
 class Item:
     """The Item class is a model of the source data representing a product."""
@@ -38,14 +41,27 @@ class Item:
         """
         try:
             self.model = str(model) if model else None
-            self.stock_status = str(stock_status) if stock_status else None
             self.stock_level = int(stock_level) if stock_level else int(0)
+            self.stock_status = self._deriveStockStatus(
+                stock_status, stock_level
+            )
             self.rrp = Decimal(rrp) if rrp else Decimal(0.00)
             self.cost = Decimal(cost) if cost else Decimal(0.00)
         except ValueError as value_exception:
             raise value_exception
         self.attributes = []
         self.attributes.append((label, value) for (label, value) in attributes)
+
+    def _deriveStockStatus(self, status: str = None, level: int = None) -> str:
+        """Favour the status that is provided by the source primarily. If the status
+        is not explicitly supplied, fallback on the level given otherwise return
+        that the Item is unavailable."""
+        if status and status in AVAILABILITY_VALUE_SYMONYMS:
+            return "In Stock"
+        if not status:
+            if int(level) > MIN_STOCK_THRESHOLD:
+                return "In Stock"
+        return "Out of Stock"
 
     def __eq__(self, other) -> bool:
         """Equality operator overload for comparing the equality of
