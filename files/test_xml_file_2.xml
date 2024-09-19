@@ -1,0 +1,35 @@
+<feed>
+    <title>Test XML File Stock &amp; Prices</title>
+    <link>https://www.ffdgroup.co.uk/</link>
+    <description>Stock &amp; Prices for fictional test products in an XML file.</description>
+    <product>
+        <lastUpdated/>
+        <productCode>
+            <![CDATA[ xmltestmodel1 ]]>
+        </productCode>
+        <productName>
+            <![CDATA[ XML test model name 1 normal stock ]]>
+        </productName>
+        <stockLevel>3</stockLevel>
+    </product>
+    <product>
+        <lastUpdated/>
+        <productCode>
+            <![CDATA[ xmltestmodel2 ]]>
+        </productCode>
+        <productName>
+            <![CDATA[ XML test model name 2 out of stock ]]>
+        </productName>
+        <stockLevel>0</stockLevel>
+    </product>
+    <product>
+        <lastUpdated/>
+        <productCode>
+            <![CDATA[ xmltestmodel3 ]]>
+        </productCode>
+        <productName>
+            <![CDATA[ XML test model name 3 lots of stock ]]>
+        </productName>
+        <stockLevel>999999</stockLevel>
+    </product>
+</feed>
