@@ -1,0 +1,260 @@
+{
+    "items": [
+        {
+            "id": 12345,
+            "sku": "testmodel1",
+            "name": "ACME testmodel1 Amazing Product",
+            "attribute_set_id": 110,
+            "price": 1000,
+            "status": 1,
+            "visibility": 1,
+            "type_id": "simple",
+            "created_at": "2018-04-24 11:07:17",
+            "updated_at": "2024-09-20 09:12:11",
+            "weight": 74,
+            "extension_attributes": {
+                "website_ids": [
+                    0
+                ],
+                "category_links": [
+                    {
+                        "position": 0,
+                        "category_id": "123"
+                    },
+                    {
+                        "position": 561,
+                        "category_id": "321"
+                    }
+                ]
+            },
+            "product_links": [],
+            "options": [],
+            "media_gallery_entries": [],
+            "tier_prices": [],
+            "custom_attributes": [
+                {
+                    "attribute_code": "googleshopping_exclude",
+                    "value": "0"
+                },
+                {
+                    "attribute_code": "special_price",
+                    "value": "750"
+                },
+                {
+                    "attribute_code": "delivery",
+                    "value": "22503"
+                },
+                {
+                    "attribute_code": "image",
+                    "value": "https://ffdgroup.co.uk/media/catalog/product/no_selection"
+                },
+                {
+                    "attribute_code": "description",
+                    "value": "<p>This testmodel1 is an amazing product that you should definitely buy now.</p><ul><li>Stylish colour</li><li>Good for testing</li><li>Well written description</li><li>Definitely not fake</li><p>Pick up a testmodel1 now and be set for all your testing needs.</p>"
+                },
+                {
+                    "attribute_code": "height",
+                    "value": "500"
+                },
+                {
+                    "attribute_code": "finish",
+                    "value": "25038"
+                },
+                {
+                    "attribute_code": "watts",
+                    "value": "25642"
+                },
+                {
+                    "attribute_code": "special_from_date",
+                    "value": "2019-04-08 00:00:00"
+                },
+                {
+                    "attribute_code": "small_image",
+                    "value": "https://ffdgroup.co.uk/media/catalog/product/no_selection"
+                },
+                {
+                    "attribute_code": "short_description",
+                    "value": "<p>This testmodel1 is an amazing product that you should definitely buy now.</p>"
+                },
+                {
+                    "attribute_code": "litres_capacity",
+                    "value": "24732"
+                },
+                {
+                    "attribute_code": "width",
+                    "value": "500"
+                },
+                {
+                    "attribute_code": "lock",
+                    "value": "26518"
+                },
+                {
+                    "attribute_code": "internal_finish",
+                    "value": "23038"
+                },
+                {
+                    "attribute_code": "power_supply",
+                    "value": "24236"
+                },
+                {
+                    "attribute_code": "mep_climateclass",
+                    "value": "3"
+                },
+                {
+                    "attribute_code": "thumbnail",
+                    "value": "https://ffdgroup.co.uk/media/catalog/product/no_selection"
+                },
+                {
+                    "attribute_code": "depth",
+                    "value": "500"
+                },
+                {
+                    "attribute_code": "defrost_type",
+                    "value": "25970"
+                },
+                {
+                    "attribute_code": "refrigerant",
+                    "value": "24348"
+                },
+                {
+                    "attribute_code": "mep_energyefficiencyclass",
+                    "value": "B"
+                },
+                {
+                    "attribute_code": "cost",
+                    "value": "500"
+                },
+                {
+                    "attribute_code": "cooling_type",
+                    "value": "22787"
+                },
+                {
+                    "attribute_code": "refrigerant_charge",
+                    "value": "33590"
+                },
+                {
+                    "attribute_code": "mep_grossinternalvol",
+                    "value": "839"
+                },
+                {
+                    "attribute_code": "discontinued",
+                    "value": "0"
+                },
+                {
+                    "attribute_code": "tax_class_id",
+                    "value": "2"
+                },
+                {
+                    "attribute_code": "noise_level",
+                    "value": "24293"
+                },
+                {
+                    "attribute_code": "mep_kwh24hr",
+                    "value": "4.5"
+                },
+                {
+                    "attribute_code": "url_key",
+                    "value": "acme-testmodel1-product"
+                },
+                {
+                    "attribute_code": "mep_kwhannum",
+                    "value": "1643"
+                },
+                {
+                    "attribute_code": "priceonapplication",
+                    "value": "0"
+                },
+                {
+                    "attribute_code": "mep_maxambient",
+                    "value": "25Â°C at 60% RH"
+                },
+                {
+                    "attribute_code": "glass_type",
+                    "value": "23732"
+                },
+                {
+                    "attribute_code": "packed_height",
+                    "value": "840.000000"
+                },
+                {
+                    "attribute_code": "packed_width",
+                    "value": "2140.000000"
+                },
+                {
+                    "attribute_code": "packed_depth",
+                    "value": "1030.000000"
+                },
+                {
+                    "attribute_code": "internal_height",
+                    "value": "620.000000"
+                },
+                {
+                    "attribute_code": "internal_width",
+                    "value": "1880.000000"
+                },
+                {
+                    "attribute_code": "internal_depth",
+                    "value": "790.000000"
+                },
+                {
+                    "attribute_code": "max_baskets",
+                    "value": "23737"
+                },
+                {
+                    "attribute_code": "packed_weight",
+                    "value": "24764"
+                },
+                {
+                    "attribute_code": "footing",
+                    "value": "22795"
+                },
+                {
+                    "attribute_code": "placement",
+                    "value": "24357"
+                },
+                {
+                    "attribute_code": "temp_range",
+                    "value": "22608"
+                },
+                {
+                    "attribute_code": "category_ids",
+                    "value": [
+                        "123",
+                        "561"
+                    ]
+                },
+                {
+                    "attribute_code": "manufacturer",
+                    "value": "35887"
+                },
+                {
+                    "attribute_code": "brand",
+                    "value": "18264"
+                },
+                {
+                    "attribute_code": "warranty_cover",
+                    "value": "26535"
+                }
+            ]
+        }
+    ],
+    "search_criteria": {
+        "filter_groups": [
+            {
+                "filters": [
+                    {
+                        "field": "sku",
+                        "value": "testmodel1",
+                        "condition_type": "eq"
+                    },
+                    {
+                        "field": "manufacturer",
+                        "value": "ACME",
+                        "condition_type": "eq"
+                    }
+                ]
+            }
+        ]
+    },
+    "total_count": 1
+}

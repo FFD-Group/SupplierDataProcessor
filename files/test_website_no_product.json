@@ -1,0 +1,22 @@
+{
+    "items": [],
+    "search_criteria": {
+        "filter_groups": [
+            {
+                "filters": [
+                    {
+                        "field": "sku",
+                        "value": "testmodel0",
+                        "condition_type": "eq"
+                    },
+                    {
+                        "field": "manufacturer",
+                        "value": "ACME",
+                        "condition_type": "eq"
+                    }
+                ]
+            }
+        ]
+    },
+    "total_count": 0
+}
